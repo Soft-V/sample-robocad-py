@@ -28,6 +28,9 @@ class RobotWrapper:
     def set_servo_angle(self, angle: float):
         GlobalHolder.robot.set_angle_hcdio(angle, Constants.SERVO_MOTOR_PORT)
 
+    def get_camera_image(self):
+        return GlobalHolder.robot.camera_image
+
     
     def periodic(self):
         '''Code that runs once every robot loop'''
@@ -35,3 +38,9 @@ class RobotWrapper:
         # Updates for outputs to the shufflecad
         GlobalHolder.sv_ir_sensor.set_float(self.get_ir())
         GlobalHolder.sv_us_sensor.set_float(self.get_us())
+
+        # Updates servo angle from shufflecad
+        self.set_servo_angle(GlobalHolder.sv_servo_motor.get_float())
+
+        # Updates camera image in shufflecad
+        GlobalHolder.cv_default_camera.set_mat(self.get_camera_image())
