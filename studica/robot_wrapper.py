@@ -2,25 +2,26 @@
 
 from global_holder import GlobalHolder
 from constants import Constants
+from other.robot_extensions import RobotExtensions
 
 class RobotWrapper:
     def get_ir(self):
-        return getattr(GlobalHolder.robot, "analog_" + str(Constants.SHARP_PORT))
+        return RobotExtensions.get_analog(GlobalHolder.robot, Constants.SHARP_PORT)
     
     def get_us(self):
-        return getattr(GlobalHolder.robot, "us_" + str(Constants.SONIC_PORT))
+        return RobotExtensions.get_ultrasound(GlobalHolder.robot, Constants.SONIC_PORT)
     
     def set_left_motor_speed(self, speed: float):
-        setattr(GlobalHolder.robot, "motor_speed_" + str(Constants.LEFT_MOTOR_PORT), speed)
+        RobotExtensions.set_motor_speed(GlobalHolder.robot, Constants.LEFT_MOTOR_PORT, speed)
 
     def set_right_motor_speed(self, speed: float):
-        setattr(GlobalHolder.robot, "motor_speed_" + str(Constants.RIGHT_MOTOR_PORT), speed)
+        RobotExtensions.set_motor_speed(GlobalHolder.robot, Constants.RIGHT_MOTOR_PORT, speed)
 
     def get_left_motor_enc(self):
-        return getattr(GlobalHolder.robot, "motor_enc_" + str(Constants.LEFT_MOTOR_PORT))
+        return RobotExtensions.get_motor_enc(GlobalHolder.robot, Constants.LEFT_MOTOR_PORT)
     
     def get_right_motor_enc(self):
-        return getattr(GlobalHolder.robot, "motor_enc_" + str(Constants.RIGHT_MOTOR_PORT))
+        return RobotExtensions.get_motor_enc(GlobalHolder.robot, Constants.RIGHT_MOTOR_PORT)
     
     def get_yaw(self):
         return GlobalHolder.robot.yaw
