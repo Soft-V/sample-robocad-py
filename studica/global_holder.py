@@ -5,13 +5,19 @@ from robocad.shufflecad import ShuffleVariable, CameraVariable
 
 class GlobalHolder:
     robot: RobotVmxTitan = None
+    shufflecad: Shufflecad = None
     wrapper = None
     program = None
 
     # Shufflecad variables init
-    sv_ir_sensor: ShuffleVariable = Shufflecad.add_var(ShuffleVariable("ir sens", ShuffleVariable.FLOAT_TYPE, ShuffleVariable.OUT_VAR))
-    sv_us_sensor: ShuffleVariable = Shufflecad.add_var(ShuffleVariable("us sens", ShuffleVariable.FLOAT_TYPE, ShuffleVariable.OUT_VAR))
+    sv_ir_sensor: ShuffleVariable = None
+    sv_us_sensor: ShuffleVariable = None
+    sv_servo_motor: ShuffleVariable = None
+    cv_default_camera: CameraVariable = None
 
-    sv_servo_motor: ShuffleVariable = Shufflecad.add_var(ShuffleVariable("servo m", ShuffleVariable.SLIDER_TYPE, ShuffleVariable.IN_VAR))
-
-    cv_default_camera: CameraVariable = Shufflecad.add_var(CameraVariable("default"))
+    @classmethod
+    def init_variables(cls):
+        cls.sv_ir_sensor = cls.shufflecad.add_var(ShuffleVariable("ir sens", ShuffleVariable.FLOAT_TYPE, ShuffleVariable.OUT_VAR))
+        cls.sv_us_sensor = cls.shufflecad.add_var(ShuffleVariable("us sens", ShuffleVariable.FLOAT_TYPE, ShuffleVariable.OUT_VAR))
+        cls.sv_servo_motor = cls.shufflecad.add_var(ShuffleVariable("servo m", ShuffleVariable.SLIDER_TYPE, ShuffleVariable.IN_VAR))
+        cls.cv_default_camera = cls.shufflecad.add_var(CameraVariable("default"))
