@@ -1,5 +1,5 @@
 from robocad.studica import RobotVmxTitan
-from robocad.shufflecad.shufflecad import Shufflecad
+from robocad.shufflecad import Shufflecad
 
 from constants import Constants
 from robot_wrapper import RobotWrapper

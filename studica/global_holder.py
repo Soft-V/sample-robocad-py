@@ -1,7 +1,7 @@
 # workaround of python circular import problem
 from robocad.studica import RobotVmxTitan
-from robocad.shufflecad.shufflecad import Shufflecad
-from robocad.shufflecad.shufflecad_holder import ShuffleVariable, CameraVariable
+from robocad.shufflecad import Shufflecad
+from robocad.shufflecad import ShuffleVariable, CameraVariable
 
 class GlobalHolder:
     robot: RobotVmxTitan = None
